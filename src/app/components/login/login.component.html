@@ -1,0 +1,55 @@
+<div class="login_container">
+  <div class="loginForm">
+    <form
+      [formGroup]="loginForm"
+      fxLayoutAlign="strech"
+      class="login-form form-container"
+    >
+      <div class="title">
+        <img src="../../assets/images/logo.png" alt="logo" class="logo" />
+        <h4>Chest X-ray Supporter</h4>
+        <h2>Log In</h2>
+        <h5>Enter your username and password below</h5>
+      </div>
+      <mat-label>USERNAME</mat-label><br />
+      <mat-form-field appearance="outline">
+        <input
+          matInput
+          id="name"
+          formControlName="username"
+          required
+          placeholder="Email address"
+        /> </mat-form-field
+      ><br />
+
+      <mat-label>PASSWORD<span class="forgot">Forgot password?</span></mat-label
+      ><br />
+      <mat-form-field appearance="outline">
+        <input
+          matInput
+          required
+          placeholder="Password"
+          [type]="hide ? 'password' : 'text'"
+          id="password"
+          formControlName="password"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="hide = !hide"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide"
+        >
+          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+        </button> </mat-form-field
+      ><br />
+
+      <button mat-raised-button (click)="checkLogin()" class="blue">
+        Log In
+      </button>
+      <h5 class="link">
+        Don't have an account? <span class="blue_link"> Sign up</span>
+      </h5>
+    </form>
+  </div>
+</div>

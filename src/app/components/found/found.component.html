@@ -1,0 +1,170 @@
+<div class="found_container">
+  <div class="left">
+    <div class="">
+      <img src="../../assets/images/logo.png" alt="logo" class="logo" />
+
+      <div class="big_title">Chest X-ray diagnosis support</div>
+    </div>
+  </div>
+
+  <div class="right"></div>
+
+  <div class="content">
+    <input type="radio" name="slider" checked id="home" class="radio" />
+    <input type="radio" name="slider" id="blog" class="radio" />
+    <div class="list">
+      <label for="home" class="home">
+        <span class="icon"><i class="fas fa-chart-pie"></i></span>
+        <span class="title">Diagnosis</span>
+      </label>
+      <label for="blog" class="blog">
+        <span class="icon"><i class="fas fa-ticket-alt"></i></span>
+        <span class="title2">History</span>
+      </label>
+
+      <div class="slider"></div>
+    </div>
+    <div class="text-content">
+      <!-- first tab -->
+      <div class="home text">
+        <div class="diagnosis_title">
+          <div class="big">Diagnosis</div>
+          <div class="doctor_name">Jones Ferdinand</div>
+          <div class="line"></div>
+          <div class="doctor_img">
+            <img
+              src="../../../assets/images/avatar.png"
+              width="43px"
+              height="43px"
+            />
+          </div>
+        </div>
+        <div class="medical_record_form">
+          <form class="form_body">
+
+            <div class="top_side">
+
+              <div class="left_side">
+                <div class="form_title">Diagnosis Record</div>
+                <img class="left_img" src="../../../assets/images/chest.png" alt="ok" width="487px" height="529px"/>
+              </div>
+              <div class="right_side">
+                <div class="result">
+                  <div class="desease_name">
+                    <p class="grey_text">Desease Name</p>
+                    <p class="red_text">Mass</p>
+                  </div>
+                  <div class="prediction">
+                    <p class="grey_text">Prediction</p>
+                    <p class="red_text">89.7%</p>
+                  </div>
+                </div>
+                <!-- <img class="slider_img" src="../../../assets/images/image3.png" width="473px" height="529px"/> -->
+                <div id="carouselExampleControls" class="carousel slide slider_img" >
+                  <div class="carousel-inner ">
+                    <div class="carousel-item active">
+                      <img src="../../../assets/images/image3.png" class="d-block " alt="..." width="473px" height="529px" >
+                      <div class="carousel-caption d-none d-md-block caption">
+                        <h5>1</h5>
+                      </div>
+                    </div>
+                    <div class="carousel-item">
+                      <img src="../../../assets/images/chest.png" class="d-block " alt="..." width="473px" height="529px" >
+                      <div class="carousel-caption d-none d-md-block caption">
+                        <h5>2</h5>
+                      </div>
+                    </div>
+                    <div class="carousel-item">
+                      <img src="../../../assets/images/image3.png" class="d-block" alt="..." width="473px" height="529px" >
+                      <div class="carousel-caption d-none d-md-block caption">
+                        <h5>3</h5>
+                      </div>
+                    </div>
+                  </div>
+                  <button class="carousel-control-prev carousel-arrow carousel-arrow1" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                    <span  aria-hidden="true"><i class="fas fa-angle-left carousel-icon"></i></span>
+                    <span class="visually-hidden">Previous</span>
+                  </button>
+                  <button class="carousel-control-next carousel-arrow carousel-arrow2" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                    <span  aria-hidden="true"><i class="fas fa-angle-right carousel-icon"></i></span>
+                    <span class="visually-hidden">Next</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="bottom_side">
+              <div class="left_bottom_side">
+                <p class="label_form">
+                  Doctor Comment<span class="compulsory"> *</span>
+                </p>
+                <mat-form-field
+                  class="example-full-width"
+                  appearance="outline"
+                >
+
+                  <textarea
+                    matInput
+                    placeholder="Hình ảnh bảng đồ nhiệt chưa bao quát vùng bệnh..."
+                    required
+                    [formControl]="comment"
+                  ></textarea>
+                  <mat-error *ngIf="comment">{{
+                    getDoctorCommentErrorMessage()
+                  }}</mat-error> </mat-form-field
+                >
+
+              </div>
+              <div class="right_bottom_side">
+                <p class="label_form">
+                  Doctor Validation<span class="compulsory"> *</span>
+                </p>
+                <mat-form-field appearance="fill">
+                  <mat-select
+                    matNativeControl
+                    [formControl]="validationControl"
+                    required
+                  >
+                    <mat-option>--</mat-option>
+                    <mat-option value="Male">Male</mat-option>
+                    <mat-option value="Female">Female</mat-option>
+                    <mat-option value="Other">Other</mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="validationControl.hasError('required')"
+                    >Please choose one of validation</mat-error
+                  >
+                </mat-form-field>
+                <p class="label_form">
+                  Desease Name (Doctor)<span class="compulsory"> *</span>
+                </p>
+                <mat-form-field appearance="outline">
+                  <input
+                    matInput
+                    placeholder="Nguyen Van A"
+                    required=""
+                    [formControl]="deseaseName"
+                    formControlName="firstCtrl"
+                  />
+                  <mat-error *ngIf="deseaseName">{{
+                    getErrorMessage()
+                  }}</mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <!-- <button class="analysis_button " (click)="checkField()">Analysis</button> -->
+          </form>
+        </div>
+      </div>
+      <!-- second tab -->
+      <div class="blog text">
+        <div class="title">Blog Content</div>
+
+
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+

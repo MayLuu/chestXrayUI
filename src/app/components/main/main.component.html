@@ -1,0 +1,466 @@
+<div class="content">
+  <input type="radio" name="slider" checked id="home" class="radio" />
+  <input type="radio" name="slider" id="blog" class="radio" />
+
+  <div class="list">
+    <div class="left_title">
+      <div class="col1">
+        <img src="../../assets/images/logo.png" alt="logo" class="logo" />
+      </div>
+      <div class="col2">
+        <div class="big_title">Chest X-ray diagnosis support</div>
+      </div>
+    </div>
+    <label for="home" class="home">
+      <span class="icon"><i class="fas fa-chart-pie"></i></span>
+      <span class="title">Diagnosis</span>
+    </label>
+    <label for="blog" class="blog">
+      <span class="icon"><i class="fas fa-ticket-alt"></i></span>
+      <span class="title">History</span>
+    </label>
+
+    <div class="slider"></div>
+  </div>
+
+  <div class="text-content">
+    <div class="home text diagnosis">
+      <div class="diagnosis_title">
+        <div class="big">Diagnosis</div>
+        <div class="doctor_name">{{ currentUserName }}</div>
+        <div class="line"></div>
+        <div class="doctor_img">
+          <img
+            src="../../../assets/images/avatar.png"
+            width="43px"
+            height="43px"
+          />
+        </div>
+      </div>
+      <!-- <div class="medical_record_form">
+        <div class="form_title">Medical Record</div>
+        <form class="form_body">
+          <mat-stepper linear #stepper class="stepper_container">
+            <mat-step
+              [stepControl]="firstFormGroup"
+              errorMessage="One of required fields is empty"
+            >
+              <form [formGroup]="firstFormGroup" class="first_form">
+                <ng-template matStepLabel>Patient Information</ng-template>
+                <div>
+                  <p class="label_form">
+                    Patient Name<span class="compulsory"> *</span>
+                  </p>
+                  <mat-form-field appearance="outline">
+                    <input
+                      matInput
+                      placeholder="Nguyen Van A"
+                      required=""
+                      [formControl]="name"
+                      formControlName="firstCtrl"
+                    />
+                    <mat-error *ngIf="name">{{ getErrorMessage() }}</mat-error>
+                  </mat-form-field>
+                  <p class="label_form">
+                    Patient Birthday<span class="compulsory"> *</span>
+                  </p>
+                  <mat-form-field appearance="outline">
+                    <input
+                      matInput
+                      placeholder="1/1/1999"
+                      [formControl]="dob"
+                      required
+                    />
+                    <mat-error
+                      *ngIf="
+                        dob.hasError('required') || dob.hasError('pattern')
+                      "
+                      >{{ getDOBErrorMessage() }}</mat-error
+                    >
+                  </mat-form-field>
+                  <p class="label_form">
+                    Patient Sex<span class="compulsory"> *</span>
+                  </p>
+                  <mat-form-field appearance="fill">
+                    <mat-select
+                      matNativeControl
+                      [formControl]="sexControl"
+                      required
+                    >
+                      <mat-option>--</mat-option>
+                      <mat-option value="Male">Male</mat-option>
+                      <mat-option value="Female">Female</mat-option>
+                      <mat-option value="Other">Other</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="sexControl.hasError('required')"
+                      >Please choose patient sex</mat-error
+                    >
+                  </mat-form-field>
+                  <p class="label_form">Patient Job</p>
+                  <mat-form-field appearance="outline">
+                    <input matInput placeholder="Teacher" />
+                  </mat-form-field>
+                  <p class="label_form">Patient Address</p>
+                  <mat-form-field appearance="outline">
+                    <input matInput placeholder="HCM City" />
+                  </mat-form-field>
+                </div>
+                <div>
+                  <p class="label_form">
+                    Patient Allergy<span class="compulsory"> *</span>
+                  </p>
+                  <mat-form-field
+                    class="example-full-width"
+                    appearance="outline"
+                  >
+                    <textarea
+                      matInput
+                      placeholder="I have..."
+                      required
+                      [formControl]="advice"
+                    ></textarea>
+                    <mat-error *ngIf="advice">{{
+                      getAdviceErrorMessage()
+                    }}</mat-error>
+                  </mat-form-field>
+                  <p class="label_form">
+                    Patient Vaccination<span class="compulsory"> *</span>
+                  </p>
+                  <mat-form-field
+                    class="example-full-width"
+                    appearance="outline"
+                  >
+                    <textarea
+                      matInput
+                      placeholder="I have..."
+                      required
+                      [formControl]="advice"
+                    ></textarea>
+                    <mat-error *ngIf="advice">{{
+                      getAdviceErrorMessage()
+                    }}</mat-error>
+                  </mat-form-field>
+                  <p class="label_form">
+                    Patient Health Background<span class="compulsory"> *</span>
+                  </p>
+                  <mat-form-field
+                    class="example-full-width"
+                    appearance="outline"
+                  >
+                    <textarea
+                      matInput
+                      placeholder="I had..."
+                      required
+                      [formControl]="advice"
+                    ></textarea>
+                    <mat-error *ngIf="advice">{{
+                      getAdviceErrorMessage()
+                    }}</mat-error>
+                  </mat-form-field>
+                </div>
+
+                <div class="arrow">
+                  <button mat-button matStepperNext>
+                    <i class="fas fa-arrow-right"></i>
+                  </button>
+                </div>
+              </form>
+            </mat-step>
+
+            <mat-step
+              [stepControl]="secondFormGroup"
+              errorMessage="One of required fields is empty"
+            >
+              <form [formGroup]="secondFormGroup" class="first_form">
+                <ng-template matStepLabel>Medical Information</ng-template>
+                <div>
+                  <p class="label_form">
+                    Patient Symptoms<span class="compulsory"> *</span>
+                  </p>
+                  <mat-form-field appearance="outline">
+                    <input
+                      matInput
+                      placeholder="Ho, Sot, Cam lanh"
+                      [formControl]="symptoms"
+                      required
+                      formControlName="secondCtrl"
+                    />
+                    <mat-error *ngIf="symptoms">{{
+                      getSymptomsErrorMessage()
+                    }}</mat-error> </mat-form-field
+                  ><br />
+                  <p class="label_form">
+                    Medical Record Presenting Complaint<span class="compulsory">
+                      *</span
+                    >
+                  </p>
+                  <mat-form-field
+                    class="example-full-width"
+                    appearance="outline"
+                  >
+                    <textarea
+                      matInput
+                      placeholder="You should..."
+                      required
+                      [formControl]="advice"
+                    ></textarea>
+                    <mat-error *ngIf="advice">{{
+                      getAdviceErrorMessage()
+                    }}</mat-error>
+                  </mat-form-field>
+                  <p class="label_form">
+                    Medical Record Hospitalization Status<span
+                      class="compulsory"
+                    >
+                      *</span
+                    >
+                  </p>
+                  <mat-form-field
+                    class="example-full-width"
+                    appearance="outline"
+                  >
+                    <textarea
+                      matInput
+                      placeholder="You should..."
+                      required
+                      [formControl]="advice"
+                    ></textarea>
+                    <mat-error *ngIf="advice">{{
+                      getAdviceErrorMessage()
+                    }}</mat-error>
+                  </mat-form-field>
+                  <p class="label_form">
+                    Medical Record Initial Diagnosis<span class="compulsory">
+                      *</span
+                    >
+                  </p>
+                  <mat-form-field
+                    class="example-full-width"
+                    appearance="outline"
+                  >
+                    <textarea
+                      matInput
+                      placeholder="You should..."
+                      required
+                      [formControl]="advice"
+                    ></textarea>
+                    <mat-error *ngIf="advice">{{
+                      getAdviceErrorMessage()
+                    }}</mat-error>
+                  </mat-form-field>
+                </div>
+
+                <div>
+                  <p class="label_form">
+                    Medical Record Diffirential Diagnosis<span
+                      class="compulsory"
+                    >
+                      *</span
+                    >
+                  </p>
+                  <mat-form-field
+                    class="example-full-width"
+                    appearance="outline"
+                  >
+                    <textarea
+                      matInput
+                      placeholder="You should..."
+                      required
+                      [formControl]="advice"
+                    ></textarea>
+                    <mat-error *ngIf="advice">{{
+                      getAdviceErrorMessage()
+                    }}</mat-error>
+                  </mat-form-field>
+                  <p class="label_form">
+                    Medical Record Primary Diagnosis<span class="compulsory">
+                      *</span
+                    >
+                  </p>
+                  <mat-form-field
+                    class="example-full-width"
+                    appearance="outline"
+                  >
+                    <textarea
+                      matInput
+                      placeholder="You should..."
+                      required
+                      [formControl]="advice"
+                    ></textarea>
+                    <mat-error *ngIf="advice">{{
+                      getAdviceErrorMessage()
+                    }}</mat-error>
+                  </mat-form-field>
+                  <p class="label_form">
+                    Medical Record Treatment<span class="compulsory"> *</span>
+                  </p>
+                  <mat-form-field
+                    class="example-full-width"
+                    appearance="outline"
+                  >
+                    <textarea
+                      matInput
+                      placeholder="You should..."
+                      required
+                      [formControl]="advice"
+                    ></textarea>
+                    <mat-error *ngIf="advice">{{
+                      getAdviceErrorMessage()
+                    }}</mat-error>
+                  </mat-form-field>
+                  <p class="label_form">
+                    Medical Record Hospitalization Datetime<span
+                      class="compulsory"
+                    >
+                      *</span
+                    >
+                  </p>
+                  <mat-form-field appearance="outline">
+                    <input
+                      matInput
+                      placeholder="1/1/1999"
+                      [formControl]="dob"
+                      required
+                    />
+                    <mat-error
+                      *ngIf="
+                        dob.hasError('required') || dob.hasError('pattern')
+                      "
+                      >{{ getDOBErrorMessage() }}</mat-error
+                    >
+                  </mat-form-field>
+                </div>
+                <div class="arrow2">
+                  <button mat-button matStepperPrevious>
+                    <i class="fas fa-arrow-left"></i>
+                  </button>
+                  <button mat-button matStepperNext>
+                    <i class="fas fa-arrow-right"></i>
+                  </button>
+                </div>
+              </form>
+            </mat-step>
+
+            <mat-step
+              [stepControl]="thirdFormGroup"
+              errorMessage="One of required fields is empty"
+            >
+              <form [formGroup]="thirdFormGroup" class="form">
+                <ng-template matStepLabel>Insert Chest X-ray</ng-template>
+                <div>
+                  <div>
+                    Chest X-ray Image
+                    <span
+                      ><input
+                        id="choosed"
+                        class="add_img_button"
+                        type="file"
+                        (change)="onChange($event)"
+                    /></span>
+                  </div>
+
+                  <div *ngIf="myImage" class="xray">
+                    <img
+                      [src]="myImage"
+                      alt=""
+                      width="60%"
+                      class="border-img p-2"
+                      height="60%"
+                    />
+                    <textarea
+                      hidden
+                      cols="40"
+                      rows="20"
+                      [(ngModel)]="myImage"
+                    ></textarea>
+                  </div>
+                  <div class="arrow2">
+                    <button mat-button matStepperPrevious>
+                      <i class="fas fa-arrow-left"></i>
+                    </button>
+                    <button mat-button matStepperNext>
+                      <i class="fas fa-arrow-right"></i>
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </mat-step>
+
+            <mat-step
+              [stepControl]="fourthFormGroup"
+              errorMessage="One of required fields is empty"
+            >
+              <form [formGroup]="fourthFormGroup" class="form">
+                <ng-template matStepLabel
+                  >Family History Information</ng-template
+                >
+                <div>
+                  <p class="label_form">
+                    Family History Relation<span class="compulsory"> *</span>
+                  </p>
+                  <mat-form-field
+                    class="example-full-width"
+                    appearance="outline"
+                  >
+                    <textarea
+                      matInput
+                      placeholder="You should..."
+                      required
+                      [formControl]="advice"
+                    ></textarea>
+                    <mat-error *ngIf="advice">{{
+                      getAdviceErrorMessage()
+                    }}</mat-error>
+                  </mat-form-field>
+                  <p class="label_form">
+                    Family History Detail<span class="compulsory"> *</span>
+                  </p>
+                  <mat-form-field
+                    class="example-full-width"
+                    appearance="outline"
+                  >
+                    <textarea
+                      matInput
+                      placeholder="You should..."
+                      required
+                      [formControl]="advice"
+                    ></textarea>
+                    <mat-error *ngIf="advice">{{
+                      getAdviceErrorMessage()
+                    }}</mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="arrow2">
+                  <button mat-button matStepperPrevious>
+                    <i class="fas fa-arrow-left"></i>
+                  </button>
+                  <button mat-button matStepperNext>
+                    <i class="fas fa-arrow-right"></i>
+                  </button>
+                </div>
+              </form>
+            </mat-step>
+
+            <mat-step>
+              <ng-template matStepLabel>Done</ng-template>
+              <p>You are now done.</p>
+              <div>
+                <button mat-button matStepperPrevious>
+                  <i class="fas fa-arrow-left"></i>
+                </button>
+                <button mat-button (click)="stepper.reset()">
+                    <i class="fas fa-undo"></i>
+                  </button>
+              </div>
+            </mat-step>
+          </mat-stepper>
+          <button class="analysis_button" (click)="checkField()">Analy</button>
+        </form>
+      </div> -->
+    </div>
+    <div class="blog text">
+      <div class="big">History</div>
+      <div class="history_log"></div>
+    </div>
+  </div>
+</div>
