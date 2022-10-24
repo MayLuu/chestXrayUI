@@ -22,8 +22,8 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { FoundComponent } from './components/found/found.component';
 
 import { SwiperModule } from 'swiper/angular';
-import { Login2Component } from './components/login2/login2.component';
 import { TestComponent } from './components/test/test.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 
 // import { authInterceptorProviders } from './_helpers/auth.interceptor';
@@ -37,7 +37,6 @@ import { TestComponent } from './components/test/test.component';
     LoginComponent,
     MainComponent,
     FoundComponent,
-    Login2Component,
     TestComponent
   ],
   imports: [
@@ -54,7 +53,8 @@ import { TestComponent } from './components/test/test.component';
     MatSelectModule,
     MatStepperModule,
     SwiperModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDatepickerModule
 
 
   ],

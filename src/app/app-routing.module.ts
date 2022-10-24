@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { FoundComponent } from './components/found/found.component';
-import { Login2Component } from './components/login2/login2.component';
 const routes: Routes = [
   {
     path: '',//mac dinh la Login

@@ -1,9 +1,10 @@
 <div class="content">
   <div
-    class="nav flex-column nav-pills me-3 left"
+    class="nav flex-column nav-pills left"
     id="v-pills-tab"
     role="tablist"
     aria-orientation="vertical"
+    [class.active]="classApplied"
   >
     <div class="web-title">
       <img src="../../../assets/images/logo.png" alt="logo" class="logo" />
@@ -44,7 +45,9 @@
       aria-labelledby="v-pills-home-tab"
     >
       <div class="tab-title">
-        <div class="big">Diagnosis</div>
+        <div class="big">
+          <i class="fas fa-bars" id="btn" (click)="toggleClass()"></i> Diagnosis
+        </div>
         <div class="doctor_name">{{ currentUserName }}</div>
         <div class="line"></div>
         <div class="doctor_img">
@@ -56,27 +59,139 @@
         </div>
       </div>
       <div class="form">
-        <!-- <button
-          mat-raised-button
-          (click)="isLinear = !isLinear"
-          id="toggle-linear"
-        >
-          {{ !isLinear ? "Enable linear mode" : "Disable linear mode" }}
-        </button> -->
-        <!-- <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
-          <mat-step [stepControl]="firstFormGroup">
-            <form [formGroup]="firstFormGroup">
-              <ng-template matStepLabel>Fill out your name</ng-template>
-              <mat-form-field appearance="fill">
-                <mat-label>Name</mat-label>
-                <input
-                  matInput
-                  placeholder="Last name, First name"
-                  formControlName="firstCtrl"
-                  required
-                />
-              </mat-form-field>
+        <mat-stepper labelPosition="bottom" linear #stepper>
+          <mat-step [stepControl]="firstFormGroup" class="firstForm">
+            <form [formGroup]="firstFormGroup" class="firstForm">
+              <ng-template matStepLabel>Medical Record</ng-template>
               <div>
+                <div class="col">
+                  <div class="field">
+                    <div class="label">username</div>
+                    <mat-form-field appearance="outline">
+                      <input
+                        matInput
+                        placeholder="Last name, First name"
+                        formControlName="firstCtrl"
+                        required
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div class="field">
+                    <div class="label">sex</div>
+                    <mat-form-field>
+                      <select matNativeControl required>
+                        <option value="Female">Female</option>
+                        <option value="Male>">Male</option>
+                        <option value="Other">Other</option>
+                      </select>
+                    </mat-form-field>
+                  </div>
+                  <div class="field">
+                    <div class="label">age</div>
+                    <mat-form-field appearance="outline">
+                      <input
+                        matInput
+                        formControlName="firstCtrl"
+                        required
+                        maxlength="2"
+                        placeholder="Ex. 20"
+                        type="number"
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div class="field">
+                    <div class="label">job</div>
+                    <mat-form-field appearance="outline">
+                      <input
+                        matInput
+                        placeholder="Housewife"
+                        formControlName="firstCtrl"
+                        required
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div class="field">
+                    <div class="label">Desease History</div>
+                    <mat-form-field appearance="outline">
+                      <textarea
+                        matInput
+                        placeholder="Day1, Day2"
+                        formControlName="firstCtrl"
+                        required
+                      ></textarea>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="field">
+                    <div class="label">address</div>
+                    <mat-form-field appearance="outline">
+                      <input
+                        matInput
+                        placeholder="HCM City"
+                        formControlName="firstCtrl"
+                        required
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div class="field">
+                    <div class="label">hospitalization datetime</div>
+                    <mat-form-field appearance="outline">
+                      <input
+                        matInput
+                        placeholder="12/12/2022"
+                        formControlName="firstCtrl"
+                        required
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div class="field">
+                    <div class="label">ID</div>
+                    <mat-form-field appearance="outline">
+                      <input
+                        matInput
+                        placeholder="12000"
+                        formControlName="firstCtrl"
+                        required
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div class="field">
+                    <div class="label">Presenting Complaint</div>
+                    <mat-form-field appearance="outline">
+                      <input
+                        matInput
+                        placeholder="Why you here?"
+                        formControlName="firstCtrl"
+                        required
+                      />
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <button mat-button matStepperNext>Next</button>
+              </div>
+            </form>
+          </mat-step>
+          <mat-step [stepControl]="secondFormGroup">
+            <form [formGroup]="secondFormGroup" class="firstForm">
+              <ng-template matStepLabel>Anamnesis</ng-template>
+              <div>
+                <div class="field">
+                  <div class="label">Presenting Complaint</div>
+                  <mat-form-field appearance="outline">
+                    <input
+                      matInput
+                      placeholder="Why you here?"
+                      formControlName="secondCtrl"
+                      required
+                    />
+                  </mat-form-field>
+                </div>
+              </div>
+              <div>
+                <button mat-button matStepperPrevious>Back</button>
                 <button mat-button matStepperNext>Next</button>
               </div>
             </form>
@@ -93,8 +208,49 @@
                   required
                 />
               </mat-form-field>
+              <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext>Next</button>
+              </div>
             </form>
           </mat-step>
+          <mat-step [stepControl]="thirdFormGroup">
+            <form [formGroup]="thirdFormGroup">
+              <ng-template matStepLabel>Fill out your address</ng-template>
+              <mat-form-field appearance="fill">
+                <mat-label>Address</mat-label>
+                <input
+                  matInput
+                  formControlName="thirdCtrl"
+                  placeholder="Ex. 1 Main St, New York, NY"
+                  required
+                />
+              </mat-form-field>
+              <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext>Next</button>
+              </div>
+            </form>
+          </mat-step>
+          <mat-step [stepControl]="secondFormGroup">
+            <form [formGroup]="secondFormGroup">
+              <ng-template matStepLabel>Desease History</ng-template>
+              <mat-form-field appearance="fill">
+                <mat-label>Address</mat-label>
+                <input
+                  matInput
+                  formControlName="secondCtrl"
+                  placeholder="Ex. 1 Main St, New York, NY"
+                  required
+                />
+              </mat-form-field>
+              <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext>Next</button>
+              </div>
+            </form>
+          </mat-step>
+
           <mat-step>
             <ng-template matStepLabel>Done</ng-template>
             <p>You are now done.</p>
@@ -103,7 +259,10 @@
               <button mat-button (click)="stepper.reset()">Reset</button>
             </div>
           </mat-step>
-        </mat-stepper> -->
+          <div>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </mat-stepper>
       </div>
     </div>
     <div

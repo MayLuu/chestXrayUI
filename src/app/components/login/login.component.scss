@@ -4,7 +4,6 @@
 
 // LAYOUT
 .login_container {
-
   width: 75%;
   max-width: 1920px;
   background-color: #252733;
@@ -60,17 +59,18 @@
   opacity: 0.55;
 }
 
-.title h2{
+.title h2 {
   color: #252733;
-  font-size:1.5rem;
+  font-size: 1.5rem;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 700;
   line-height: 1.8825rem;
   letter-spacing: 0.01875rem;
-  padding-top:1.2rem;
+  padding-top: 1.2rem;
 
 }
-.title h5{
+
+.title h5 {
   font-family: Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 400;
@@ -82,8 +82,9 @@
   opacity: 0.7;
   margin-top: 1.125rem;
 }
+
 //
-mat-label{
+mat-label {
   color: #9FA2B4;
   font-size: 0.75rem;
   font-weight: 500;
@@ -91,68 +92,78 @@ mat-label{
   letter-spacing: 0.3px;
   text-transform: uppercase;
 }
-.forgot{
+
+.forgot {
   float: right;
   color: #9FA2B4;
   font-size: 12px;
   text-transform: none;
-  padding-top:2px;
+  padding-top: 2px;
   font-weight: 400;
   letter-spacing: 0.1px;
 
 }
-.title h2{
+
+.title h2 {
   margin-bottom: 8px;
-  margin-top:25px
-}
-mat-form-field{
- width: 100%;
+  margin-top: 25px
 }
 
-.blue{
- width: 100%;
- height: 48px;
- background-color: #3751FF;
- color:white;
- box-shadow: 0px 4px 12px rgba(55, 81, 255, 0.24);
-border-radius: 8px;
+mat-form-field {
+  width: 100%;
 }
 
-.link,.blue_link{
+.blue {
+  width: 100%;
+  height: 48px;
+  background-color: #3751FF;
+  color: white;
+  box-shadow: 0px 4px 12px rgba(55, 81, 255, 0.24);
+  border-radius: 8px;
+}
+
+.link,
+.blue_link {
   text-align: center;
   padding: 30px 0px;
   letter-spacing: 0.3px;
   color: #9FA2B4;
   font-weight: 400;
-font-size: 0.875rem;
-line-height: 20px;
-padding-top: 2rem;
+  font-size: 0.875rem;
+  line-height: 20px;
+  padding-top: 2rem;
 }
-.blue_link{
 
-  color:#3751FF ;
+.blue_link {
+
+  color: #3751FF;
   font-weight: 500;
 }
-button{
+
+button {
   border-radius: 7px;
 }
 
-// @media only screen and (max-width: 1190px) {
-//   .loginForm{
-//     transform:  translate(-53%,-22%);
+@media only screen and (max-width: 1800px) {
+  .loginForm {
+    width: 36.38%;
+    height: 600px;
 
-//   }
-// }
-// @media only screen and (max-width: 830px) {
-//   .container{
-//     width:100%;
-//     left:0
-//   }
-//   .loginForm{
-//     transform: scale(1.1,1.1) translate(-47%,-10%);
+  }
+}
 
-//   }
-// }
+@media only screen and (max-width: 1100px) {
+  .title h5 {
+    display: none;
+  }
+
+  .loginForm {
+    width: 36.38%;
+    height: 560px;
+
+  }
+}
+
 // @media only screen and (max-width: 440px) {
 //   .container{
 //     width:100%;

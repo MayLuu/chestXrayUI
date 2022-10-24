@@ -6,11 +6,16 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./test.component.scss']
 })
 export class TestComponent implements OnInit {
+  classApplied = false;
+
   firstFormGroup = this._formBuilder.group({
     firstCtrl: ['', Validators.required],
   });
   secondFormGroup = this._formBuilder.group({
     secondCtrl: ['', Validators.required],
+  });
+  thirdFormGroup = this._formBuilder.group({
+    thirdCtrl: ['', Validators.required],
   });
   isLinear = false;
 
@@ -21,4 +26,7 @@ export class TestComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  toggleClass() {
+    this.classApplied = !this.classApplied;
+  }
 }
