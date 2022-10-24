@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 //var
-const AUTH_API = 'http://192.168.2.15:3000/api/auth/';
+const AUTH_API = 'http://localhost:3000/api/auth/';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
