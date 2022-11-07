@@ -65,11 +65,11 @@ mat-stepper {
 
 //form
 //1st
-.firstForm,
-.secondFrom {
+.firstForm {
   width: 100%;
   margin-top: 50px;
-  padding: 10px 50px 0px 40px;
+  padding: 10px 30px 20px 20px;
+
 
 
   div button {
@@ -78,21 +78,61 @@ mat-stepper {
   }
 }
 
+
 .firstForm div {
   background-color: #FFFFFF;
+
+  .col {
+    float: left;
+    width: 50%;
+    justify-content: center;
+    padding: 80px 20px 40px 80px;
+    box-sizing: border-box;
+
+    .field {
+      width: 80%;
+      height: 8em;
+
+      .label {
+        text-transform: capitalize;
+        color: #6F7482;
+        letter-spacing: 0.01;
+      }
+
+      mat-form-field {
+        background-color: #F8FAFC;
+        height: 47%;
+        border-radius: 4px;
+
+      }
+
+
+    }
+
+  }
+
+  .col-full {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+
+
+
+    .mat-form-field {
+      width: 80%;
+    }
+
+  }
 }
 
-.firstForm div .col {
-  float: left;
-  width: 50%;
-  justify-content: center;
-  padding: 80px 20px 40px 80px;
-  height: 75vh;
-
+.secondForm div {
+  background-color: #FFFFFF;
 
   .field {
-    width: 80%;
+    width: 85%;
     height: 8em;
+    padding-left: 15%;
 
     .label {
       text-transform: capitalize;
@@ -100,16 +140,89 @@ mat-stepper {
       letter-spacing: 0.01;
     }
 
-    input {}
 
     mat-form-field {
-      background-color: #F8FAFC;
-      height: 47%;
+      // background-color: #F8FAFC;
+      // height: auto;
       border-radius: 4px;
+
     }
+
+    ::ng-deep .mat-form-field-outline {
+      background-color: #F8FAFC !important;
+      border-radius: 4px !important;
+
+    }
+
+
+  }
+
+  .btn {
+    margin-left: 80%;
   }
 
 }
+
+#listOfStage {
+  height: auto;
+  width: 95%;
+  padding: 5px 10px;
+  border-radius: 10px;
+
+  ul li {
+    margin: 10px auto;
+    list-style-type: none;
+    background-color: #F7F8FC;
+    box-shadow: 2px 4px #393c4400;
+    padding: 5px 15px;
+    border-radius: 3px;
+
+
+    .deleteIcon,
+    .editIcon {
+      float: right; //last element float right first, other come after right side
+      width: 8%;
+    }
+  }
+}
+
+
+
+//form 2
+.part {
+  font-weight: 600;
+  padding: 20px 60px;
+  font-size: large;
+  display: flex;
+  align-items: baseline;
+
+  button {
+    margin-left: 10px;
+  }
+
+}
+
+.familyForm {
+  width: 20%;
+  border: 1.3px solid black;
+  padding: 25px 10px;
+
+  .sub_form_title {
+    text-align: center;
+    font-weight: 700;
+  }
+
+  ::ng-deep .mat-form-field-infix {}
+
+}
+
+.mat-button {
+  margin-top: 10px;
+  background-color: rgba(221, 233, 237, 0.992);
+  color: black
+}
+
+
 
 .field1 {
 
@@ -133,7 +246,10 @@ mat-form-field {
 }
 
 
-
+//form 5
+.bold-style {
+  font-weight: bold;
+}
 
 //left side
 .web-title {

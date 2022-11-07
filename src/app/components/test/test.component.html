@@ -60,26 +60,26 @@
       </div>
       <div class="form">
         <mat-stepper labelPosition="bottom" linear #stepper>
-          <mat-step [stepControl]="firstFormGroup" class="firstForm">
+          <mat-step [stepControl]="firstFormGroup">
             <form [formGroup]="firstFormGroup" class="firstForm">
               <ng-template matStepLabel>Medical Record</ng-template>
               <div>
                 <div class="col">
                   <div class="field">
-                    <div class="label">username</div>
+                    <div class="label">Full name</div>
                     <mat-form-field appearance="outline">
                       <input
                         matInput
                         placeholder="Last name, First name"
                         formControlName="firstCtrl"
-                        required
+                        required=""
                       />
                     </mat-form-field>
                   </div>
                   <div class="field">
                     <div class="label">sex</div>
-                    <mat-form-field>
-                      <select matNativeControl required>
+                    <mat-form-field appearance="outline">
+                      <select matNativeControl>
                         <option value="Female">Female</option>
                         <option value="Male>">Male</option>
                         <option value="Other">Other</option>
@@ -87,14 +87,12 @@
                     </mat-form-field>
                   </div>
                   <div class="field">
-                    <div class="label">age</div>
+                    <div class="label">Year or birth</div>
                     <mat-form-field appearance="outline">
                       <input
                         matInput
-                        formControlName="firstCtrl"
-                        required
                         maxlength="2"
-                        placeholder="Ex. 20"
+                        placeholder="Ex. 2020"
                         type="number"
                       />
                     </mat-form-field>
@@ -102,23 +100,7 @@
                   <div class="field">
                     <div class="label">job</div>
                     <mat-form-field appearance="outline">
-                      <input
-                        matInput
-                        placeholder="Housewife"
-                        formControlName="firstCtrl"
-                        required
-                      />
-                    </mat-form-field>
-                  </div>
-                  <div class="field">
-                    <div class="label">Desease History</div>
-                    <mat-form-field appearance="outline">
-                      <textarea
-                        matInput
-                        placeholder="Day1, Day2"
-                        formControlName="firstCtrl"
-                        required
-                      ></textarea>
+                      <input matInput placeholder="Housewife" />
                     </mat-form-field>
                   </div>
                 </div>
@@ -126,67 +108,256 @@
                   <div class="field">
                     <div class="label">address</div>
                     <mat-form-field appearance="outline">
-                      <input
-                        matInput
-                        placeholder="HCM City"
-                        formControlName="firstCtrl"
-                        required
-                      />
+                      <input matInput placeholder="HCM City" />
                     </mat-form-field>
                   </div>
                   <div class="field">
                     <div class="label">hospitalization datetime</div>
                     <mat-form-field appearance="outline">
-                      <input
-                        matInput
-                        placeholder="12/12/2022"
-                        formControlName="firstCtrl"
-                        required
-                      />
+                      <input matInput placeholder="12/12/2022" />
                     </mat-form-field>
                   </div>
                   <div class="field">
                     <div class="label">ID</div>
                     <mat-form-field appearance="outline">
-                      <input
-                        matInput
-                        placeholder="12000"
-                        formControlName="firstCtrl"
-                        required
-                      />
+                      <input matInput placeholder="12000" />
                     </mat-form-field>
                   </div>
                   <div class="field">
                     <div class="label">Presenting Complaint</div>
                     <mat-form-field appearance="outline">
-                      <input
-                        matInput
-                        placeholder="Why you here?"
-                        formControlName="firstCtrl"
-                        required
-                      />
+                      <input matInput placeholder="Why patient here?" />
                     </mat-form-field>
                   </div>
                 </div>
+                <div class="col-full">
+                  <div class="label desease-history">
+                    Desease History /*Enter to add new stage*/
+                  </div>
+                  <mat-form-field *ngIf="!editingStatus" appearance="outline">
+                    <textarea
+                      matInput
+                      placeholder="Stage details"
+                      #detail
+                      (keyup.arrowdown)="
+                        appendDetails(detail.value); detail.value = ''
+                      "
+                    ></textarea>
+                  </mat-form-field>
+
+                  <mat-form-field *ngIf="editingStatus" appearance="outline">
+                    <textarea
+                      matInput
+                      placeholder="Stage details"
+                      #detail2
+                      (keyup.arrowup)="
+                        completeEdit(detail2.value); detail2.value = ''
+                      "
+                      value="{{ onEditingDetailContent }}"
+                    ></textarea>
+                  </mat-form-field>
+                  <div id="listOfStage">
+                    <h3><strong>Detail:</strong></h3>
+                    <ul>
+                      <li
+                        *ngFor="let d of details; index as i"
+                        #stage
+                        class="stage-{{ i + 1 }}
+                        "
+                      >
+                        <b>Stage {{ i + 1 }}: </b><br />
+                        <span #detailContent>{{ d }} </span>
+
+                        <span class="deleteIcon"
+                          ><mat-icon (click)="clearStage(stage.classList)"
+                            >clear</mat-icon
+                          ></span
+                        >
+                        <span class="editIcon"
+                          ><mat-icon
+                            (click)="
+                              editStage(
+                                stage.classList,
+                                detailContent.innerText
+                              )
+                            "
+                            >edit</mat-icon
+                          ></span
+                        >
+                      </li>
+                    </ul>
+                  </div>
+                </div>
               </div>
+
               <div>
                 <button mat-button matStepperNext>Next</button>
               </div>
             </form>
           </mat-step>
           <mat-step [stepControl]="secondFormGroup">
-            <form [formGroup]="secondFormGroup" class="firstForm">
+            <form [formGroup]="secondFormGroup" class="secondForm">
               <ng-template matStepLabel>Anamnesis</ng-template>
               <div>
+                <mat-form-field appearance="outline">
+                  <textarea
+                    matInput
+                    placeholder="Being allergic to..."
+                    formControlName="secondCtrlAllergy"
+                  ></textarea>
+                </mat-form-field>
+                <div class="part">Patient desease history</div>
                 <div class="field">
-                  <div class="label">Presenting Complaint</div>
+                  <div class="label">Presenting Allergy</div>
                   <mat-form-field appearance="outline">
-                    <input
+                    <textarea
                       matInput
-                      placeholder="Why you here?"
-                      formControlName="secondCtrl"
-                      required
-                    />
+                      placeholder="Being allergic to..."
+                      formControlName="secondCtrlAllergy"
+                    ></textarea>
+                  </mat-form-field>
+                </div>
+                <div class="field">
+                  <div class="label">Presenting Vaccination</div>
+                  <mat-form-field appearance="outline">
+                    <textarea
+                      matInput
+                      placeholder="list of vaccination"
+                      formControlName="secondCtrlVaccination"
+                    ></textarea>
+                  </mat-form-field>
+                </div>
+                <div class="field">
+                  <div class="label">Presenting Health Background</div>
+                  <mat-form-field appearance="outline">
+                    <textarea
+                      matInput
+                      placeholder=""
+                      formControlName="secondCtrlHealthBackground"
+                    ></textarea>
+                  </mat-form-field>
+                </div>
+                <div class="part">Family Relation desease history</div>
+                <div *ngIf="!haveFamilyData">
+                  <div class="field">
+                    <div class="label">Relation</div>
+                    <mat-form-field appearance="outline">
+                      <textarea
+                        matInput
+                        placeholder=""
+                        formControlName="secondCtrl"
+                      ></textarea>
+                    </mat-form-field>
+                  </div>
+                  <div class="field">
+                    <div class="label">Health Background</div>
+                    <mat-form-field appearance="outline">
+                      <textarea
+                        matInput
+                        placeholder=""
+                        formControlName="secondCtrl"
+                      ></textarea>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div>
+                  <button
+                    class="btn"
+                    color="primary"
+                    mat-mini-fab
+                    aria-label="Example icon-button with a heart icon"
+                    (click)="openForm()"
+                  >
+                    <mat-icon>person_add</mat-icon>
+                  </button>
+                </div>
+                <div *ngIf="!haveFamilyData" class="familyData"></div>
+              </div>
+              <div>
+                <button mat-button matStepperNext>Next</button>
+                <button mat-button matStepperPrevious>Back</button>
+              </div>
+            </form>
+          </mat-step>
+          <mat-step [stepControl]="thirdFormGroup">
+            <form [formGroup]="thirdFormGroup" class="secondForm">
+              <ng-template matStepLabel>Clinical Examination</ng-template>
+              <div>
+                <div class="part">General</div>
+                <div class="field">
+                  <div class="label">Datetime</div>
+                </div>
+                <div class="field">
+                  <div class="label">Clinical Examination</div>
+                  <mat-form-field appearance="outline">
+                    <textarea
+                      matInput
+                      placeholder=""
+                      formControlName="thirdCtrl"
+                    ></textarea>
+                  </mat-form-field>
+                </div>
+                <div class="part">Area detail</div>
+                <div class="field">
+                  <div class="label">Area</div>
+                  <mat-form-field appearance="outline">
+                    <textarea
+                      matInput
+                      placeholder=""
+                      formControlName="thirdCtrl"
+                    ></textarea>
+                  </mat-form-field>
+                </div>
+                <div class="field">
+                  <div class="label">In detail</div>
+                  <mat-form-field appearance="outline">
+                    <textarea
+                      matInput
+                      placeholder=""
+                      formControlName="thirdCtrl"
+                    ></textarea>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext>Next</button>
+              </div>
+            </form>
+          </mat-step>
+          <mat-step [stepControl]="fourthFormGroup">
+            <form [formGroup]="fourthFormGroup" class="secondForm">
+              <ng-template matStepLabel>Medical record summary</ng-template>
+              <div>
+                <div class="field">
+                  <div class="label">General information</div>
+                  <mat-form-field appearance="outline">
+                    <textarea
+                      matInput
+                      placeholder=""
+                      formControlName="fourthCtrlGeneralInformation"
+                    ></textarea>
+                  </mat-form-field>
+                </div>
+                <div class="field">
+                  <div class="label">Sign</div>
+                  <mat-form-field appearance="outline">
+                    <textarea
+                      matInput
+                      placeholder=""
+                      formControlName="fourthCtrlSign"
+                    ></textarea>
+                  </mat-form-field>
+                </div>
+                <div class="field">
+                  <div class="label">Symtomp</div>
+                  <mat-form-field appearance="outline">
+                    <textarea
+                      matInput
+                      placeholder=""
+                      formControlName="fourthCtrlSymtomp"
+                    ></textarea>
                   </mat-form-field>
                 </div>
               </div>
@@ -196,69 +367,205 @@
               </div>
             </form>
           </mat-step>
-          <mat-step [stepControl]="secondFormGroup">
-            <form [formGroup]="secondFormGroup">
-              <ng-template matStepLabel>Fill out your address</ng-template>
-              <mat-form-field appearance="fill">
-                <mat-label>Address</mat-label>
-                <input
-                  matInput
-                  formControlName="secondCtrl"
-                  placeholder="Ex. 1 Main St, New York, NY"
-                  required
-                />
-              </mat-form-field>
+          <mat-step [stepControl]="fifthFormGroup">
+            <form [formGroup]="fifthFormGroup" class="secondForm">
+              <ng-template matStepLabel>Diagnosis</ng-template>
+              <div>
+                <div class="part">General:</div>
+                <div class="field">
+                  <div class="label">Initial Diagnosis</div>
+                  <mat-form-field appearance="outline">
+                    <textarea
+                      matInput
+                      placeholder=""
+                      formControlName="fifthCtrlInitial"
+                    ></textarea>
+                  </mat-form-field>
+                </div>
+                <div class="field">
+                  <div class="label">Differential Diagnosis</div>
+                  <mat-form-field appearance="outline">
+                    <textarea
+                      matInput
+                      placeholder=""
+                      formControlName="fifthCtrlDifferential"
+                    ></textarea>
+                  </mat-form-field>
+                </div>
+                <div class="part">Analy:</div>
+                <div class="field">
+                  <div class="label"><strong>Title:</strong></div>
+                  <mat-form-field appearance="outline">
+                    <input
+                      class="bold-style"
+                      matInput
+                      placeholder="Khó thở mạn"
+                      formControlName="fifthCtrlDifferential"
+                    />
+                  </mat-form-field>
+                </div>
+                <div class="field">
+                  <div class="label">Differential Diagnosis</div>
+                  <mat-form-field appearance="outline">
+                    <textarea
+                      matInput
+                      placeholder="miêu tả tình trạng"
+                      formControlName="fifthCtrlDifferential"
+                    ></textarea>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div>
+                <button
+                  class="btn"
+                  color="primary"
+                  mat-mini-fab
+                  aria-label="Example icon-button with a heart icon"
+                  (click)="openForm()"
+                >
+                  <mat-icon>send</mat-icon>
+                </button>
+              </div>
+
               <div>
                 <button mat-button matStepperPrevious>Back</button>
                 <button mat-button matStepperNext>Next</button>
               </div>
             </form>
           </mat-step>
-          <mat-step [stepControl]="thirdFormGroup">
-            <form [formGroup]="thirdFormGroup">
-              <ng-template matStepLabel>Fill out your address</ng-template>
-              <mat-form-field appearance="fill">
-                <mat-label>Address</mat-label>
-                <input
-                  matInput
-                  formControlName="thirdCtrl"
-                  placeholder="Ex. 1 Main St, New York, NY"
-                  required
-                />
-              </mat-form-field>
+          <mat-step [stepControl]="sixthFormGroup">
+            <form [formGroup]="sixthFormGroup" class="firstForm">
+              <ng-template matStepLabel>Subclinical Examination</ng-template>
+              <div>
+                <div class="col">
+                  <div class="field">
+                    <div class="label">Type</div>
+                    <mat-form-field appearance="outline">
+                      <select matNativeControl>
+                        <option value="Diagnosis">Diagnosis</option>
+                        <option value="Thuongqui">Thường qui</option>
+                      </select>
+                    </mat-form-field>
+                  </div>
+                  <div class="field">
+                    <div class="label">Test</div>
+                    <mat-form-field appearance="outline">
+                      <input
+                        matInput
+                        placeholder=""
+                        formControlName="sixthCtrl"
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div class="field">
+                    <div class="label">Date</div>
+                    <!-- <mat-form-field appearance="outline">
+                    <textarea
+                      matInput
+                      placeholder=""
+                      formControlName="sixthCtrl"
+                    ></textarea>
+                  </mat-form-field> -->
+                  </div>
+                  <div class="field">
+                    <div class="label">Result</div>
+                    <mat-form-field appearance="outline">
+                      <textarea
+                        matInput
+                        placeholder=""
+                        formControlName="sixthCtrl"
+                      ></textarea>
+                    </mat-form-field>
+                  </div>
+                  <div class="field">
+                    <div class="label">Conclusion</div>
+                    <mat-form-field appearance="outline">
+                      <textarea
+                        matInput
+                        placeholder=""
+                        formControlName="sixthCtrl"
+                      ></textarea>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="col"></div>
+
+                <div>
+                  <button
+                    class="btn"
+                    color="primary"
+                    mat-mini-fab
+                    aria-label="Example icon-button with a heart icon"
+                    (click)="openForm()"
+                  >
+                    <mat-icon>send</mat-icon>
+                  </button>
+                </div>
+              </div>
               <div>
                 <button mat-button matStepperPrevious>Back</button>
                 <button mat-button matStepperNext>Next</button>
               </div>
             </form>
           </mat-step>
-          <mat-step [stepControl]="secondFormGroup">
+          <mat-step [stepControl]="seventhFormGroup">
+            <form [formGroup]="seventhFormGroup" class="secondForm">
+              <ng-template matStepLabel>Diagnosis</ng-template>
+              <div>
+                <div class="field">
+                  <div class="label">Primary Diagnosis</div>
+                  <mat-form-field appearance="outline">
+                    <textarea
+                      matInput
+                      placeholder=""
+                      formControlName="seventhCtrlPrimary"
+                    ></textarea>
+                  </mat-form-field>
+                </div>
+                <div class="field">
+                  <div class="label">Treatment</div>
+                  <mat-form-field appearance="outline">
+                    <textarea
+                      matInput
+                      placeholder=""
+                      formControlName="seventhCtrlTreatment"
+                    ></textarea>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div>
+                <button
+                  class="btn"
+                  color="primary"
+                  mat-mini-fab
+                  aria-label="Example icon-button with a heart icon"
+                  (click)="openForm()"
+                >
+                  <mat-icon>send</mat-icon>
+                </button>
+              </div>
+
+              <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext>Next</button>
+              </div>
+            </form>
+          </mat-step>
+          <!-- <mat-step [stepControl]="secondFormGroup">
             <form [formGroup]="secondFormGroup">
               <ng-template matStepLabel>Desease History</ng-template>
               <mat-form-field appearance="fill">
                 <mat-label>Address</mat-label>
-                <input
-                  matInput
-                  formControlName="secondCtrl"
-                  placeholder="Ex. 1 Main St, New York, NY"
-                  required
-                />
+                <input matInput placeholder="Ex. 1 Main St, New York, NY" />
               </mat-form-field>
               <div>
                 <button mat-button matStepperPrevious>Back</button>
                 <button mat-button matStepperNext>Next</button>
               </div>
             </form>
-          </mat-step>
+          </mat-step> -->
+          -->
 
-          <mat-step>
-            <ng-template matStepLabel>Done</ng-template>
-            <p>You are now done.</p>
-            <div>
-              <button mat-button matStepperPrevious>Back</button>
-              <button mat-button (click)="stepper.reset()">Reset</button>
-            </div>
-          </mat-step>
           <div>
             <button mat-button matStepperNext>Next</button>
           </div>

@@ -24,7 +24,7 @@ import { FoundComponent } from './components/found/found.component';
 import { SwiperModule } from 'swiper/angular';
 import { TestComponent } from './components/test/test.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-
+import { MatTableModule } from '@angular/material/table';
 
 // import { authInterceptorProviders } from './_helpers/auth.interceptor';
 
@@ -54,7 +54,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     MatStepperModule,
     SwiperModule,
     HttpClientModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatTableModule
 
 
   ],
